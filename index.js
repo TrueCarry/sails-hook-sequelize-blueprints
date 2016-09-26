@@ -335,6 +335,7 @@ module.exports = function(sails) {
             // Bind add/remove "shortcuts" for each `collection` associations
             _.mapKeys(Model.associations, function(value){
               var foreign = value.options.foreignKey;
+              if(!foreign) return;
               var alias = foreign.as || foreign.name || foreign;
               var _getAssocRoute = _.partialRight(util.format, baseRoute, alias);
               var opts = _.merge({ alias: alias, target: value.target.name }, routeOpts);
@@ -359,6 +360,7 @@ module.exports = function(sails) {
             // Bind add/remove for each `collection` associations
             _.mapKeys(Model.associations, function(value, key){
               var foreign = value.options.foreignKey;
+              if(!foreign) return;
               var alias = foreign.as || foreign.name || foreign;
               var _getAssocRoute = _.partialRight(util.format, baseRestRoute, alias);
               var opts = _.merge({ alias: alias, target: value.target.name }, routeOpts);
@@ -371,6 +373,7 @@ module.exports = function(sails) {
             // and populate for both `collection` and `model` associations
             _.mapKeys(Model.associations, function(value){
               var foreign = value.options.foreignKey;
+              if(!foreign) return;
               var alias = foreign.as || foreign.name || foreign;
               var _getAssocRoute = _.partialRight(util.format, baseRestRoute, alias);
               var opts = _.merge({ alias: alias, target: value.target.name }, routeOpts);
